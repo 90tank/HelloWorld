@@ -5,5 +5,5 @@ install maven
 
 install git and add ssh key
 note :  go to hospital and diagnose  my eyes and Whofun's eyes
-
+note :  remember me!`
 
