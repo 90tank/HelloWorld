@@ -56,11 +56,46 @@ echo ${var[2]}
 echo ${var[3]}
 ````
 
+### ulimit 修改 shell 资源限制。
+help ulimit 查看
+
+### 变量内容的删除、替代、删除
+|变量设置方式|说明|
+|---|:---:|
+|${var#keywords}|若变量内容从开始的数据符合关键字，则符合的最短数据删除|
+|${var##keywords}|若变量内容从开始的数据符合关键字，则符合的最长数据删除|
+|${var%keywords}|若变量内容从尾向前的数据符合关键字，则符合的最短数据删除|
+|${var%keywords}|若变量内容从尾向前的数据符合关键字，则符合的最长数据删除|
+|${var/oldkeywords/newkeywords}|用新的替换第一个旧的字符串|
+|${var//oldkeywords/%keywords}|替换全部符合的|
+
+### 变量的测试与替换
+`username=${username-root} 如果username变量未设置，则将root给变量（username未未空字串，认为已设置）`
+
+`username=${username:-root} 如果username为空或者未设置，都能够替换后面的内容 `
+注意： - （减号并不会影响原始变量的值，若要改变，则使用= 等号）
+`unset str;echo ${str?nova} 旧变量不存在情况下 判断不存在 可用 ?`
  
 
+### 命令与别名设置
+1. alias
+如 alias cls='clear' 
+2. history
 
 
+### 数据流重定向
+1. 标准输入（std）:代码为0，使用< 或者 << 
+2. 标准输出（stdout）:代码为1，使用> 或者>>
+3. 标准错误输出（stderr）:代码为2，使用 2> 或者 2>>
 
+### /dev/null 垃圾桶黑洞设备
+```shell
+# 范例 
+# 将stdout 和stderr分别存到不同的文件去
+find /home -name .bashrc > list_right 2> list_error
+# 将stdout 和stderr分别存到同一个文件去
+find /home -name .bashrc > list 2>&1 
+``` 
 
 
 
