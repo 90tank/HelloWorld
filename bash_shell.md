@@ -97,6 +97,55 @@ find /home -name .bashrc > list_right 2> list_error
 find /home -name .bashrc > list 2>&1 
 ``` 
 
+### 选取命令： cut 、grep
+
++ cut 可以将一段信息的某一段切出来  
+`last | cut -d ' ' -f 1 从last输出的行中窃取以空格split后之后的第一个字段`
+
++ grep 
+
+###排序命令
+
+1. sort
+2. uniq　[-ic]  -ｉ 表示去重、-ｃ 统计次数
+```ｓhell
+young@z:~ $ last | cut -d ' ' -f 1 |sort|uniq //去重了
+
+reboot
+wtmp
+young
+
+young@z:~ $ last | cut -d ' ' -f 1 |sort|uniq -c
+      1 
+      1 reboot
+      1 wtmp
+      1 young
+
+```
+3. wc [-lwm] 　行、单词、多少字符
+　
+### 双向重定向：ｔｅｅ 
++ tee要结合管道‘　| ’使用
+```shell
+# 将登录信息点到界面，并且重定向到文件中
+young@z:~ $ last | tee last.list |cut -d ' ' -f1
+young
+reboot
+
+wtmp
+young@z:~ $ cat last.list 
+young    :0           :0               Sun Feb  2 10:13   still logged in
+reboot   system boot  5.3.0-28-generic Sun Feb  2 10:11   still running
+
+wtmp begins Sat Feb  1 23:39:59 2020
+
+```
+
+### 切割命令
+1. split 
+split [-bl] file PREFIX
++ split　-b 300k file //按照３００ｋ大小进行切割
++ split -l 10 file  
 
 
 
